@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <string>
-#include <cstdlib> //for rand and srand
+#include <cstdlib> 
 #include <cstdio>
 #include <vector>
 #include <time.h>
@@ -20,7 +20,7 @@ int facevalue[52] = {2,3,4,5,6,7,8,9,10,10,10,10,11,
 void shuffle(int* facevalue){
     int i,j,value = 0;
     deckSize = 52;
-    for (i = deckSize - 1; i > 0; i--) { // for loop to shuffle
+    for (i = deckSize - 1; i > 0; i--) { 
         j = rand()/(RAND_MAX/(i+1) + 1);
         value = facevalue[j];
         facevalue[j] = facevalue[i];
@@ -104,7 +104,7 @@ int q5(){
     while(hand>0){
         curHand=hand;
         for (int i=0;i<2; i++){
-            checkEmpty(facevalue); // checking when deck is empty
+            checkEmpty(facevalue); 
             player1[i]=deal(facevalue);
             checkEmpty(facevalue);
             player2[i]=deal(facevalue);
@@ -113,13 +113,13 @@ int q5(){
             checkEmpty(facevalue);
             mycards[i]=deal(facevalue);
         }
-        checkEmpty(facevalue); // checking when deck is empty
+        checkEmpty(facevalue); 
         dealer[0] = deal(facevalue);
-        //std::cout<<"COUNT is "<<count<<std::endl;
+       
         if (count<(-2)){bet=-1;}
         else if (count >2) {bet=1;}
         else if (((-2)<count) && (count<2)) {bet=0;}
-        //std::cout<<"BET IS "<<bet<<std::endl;
+
         for (int i=0; i<2;i++){
             if  ((player1[i]==2)||(player1[i]==3)||(player1[i]==4)||(player1[i]==5)||(player1[i]==6)){
                 count++;
@@ -139,7 +139,7 @@ int q5(){
             if  ((mycards[i]==2)||(mycards[i]==3)||(mycards[i]==4)||(mycards[i]==5)||(mycards[i]==6)){
                 count++;
             }
-            else if (mycards[i]==10){ count--;}}// TODO need to reset Count whenever the deck is done
+            else if (mycards[i]==10){ count--;}}
         
         
         int i=0;
@@ -148,16 +148,16 @@ int q5(){
         }
         else if (dealer[i]==10){ count--;}
         
-        for (int i=0; i<2; i++){ // counting my total cards from the two initially given
+        for (int i=0; i<2; i++){ 
             mytotal=mytotal+mycards[i];
         }
         
         
-        for (int x=2;x<20;x++){ // FOR MY CARDS***
+        for (int x=2;x<20;x++){ 
             if (mytotal<limit){
-                checkEmpty(facevalue); // checking when deck is empty
+                checkEmpty(facevalue); 
                 mycards[x]=deal(facevalue);
-                if(mycards[x] == 11){  // considering the ACE value
+                if(mycards[x] == 11){  
                     if(mytotal + 11 > 21){
                         mytotal++;}
                     else{
@@ -168,7 +168,7 @@ int q5(){
             if(mytotal>21){
                 hand--;
                 if (bet==-1){decision++;}
-                z++; // no need to go to the dealer cause u already lost
+                z++; 
                 break;
                 
             }
@@ -182,12 +182,12 @@ int q5(){
         
         int dealerTotal=dealer[0];
         
-        if ((curHand == hand) && (z==0)){ // FOR DEALER****
+        if ((curHand == hand) && (z==0)){ 
             for (int j=1; j<20;j++){
                 if (dealerTotal<17){
-                    checkEmpty(facevalue); // checking when deck is empty
+                    checkEmpty(facevalue); 
                     dealer[j]=deal(facevalue);
-                    if(dealer[j] == 11){  // considering the ACE value
+                    if(dealer[j] == 11){  
                         if(dealerTotal + 11 > 21){
                             dealerTotal++;}
                         else{dealerTotal+=11;}}
@@ -206,10 +206,9 @@ int q5(){
                     break;}
                 else if (dealerTotal==mytotal){
                     hand--;
-                    //if (bet==0){decision++;}
                     break;}
             }}
-      //  std::cout<<"IsWon "<<isWon<<std::endl;
+ 
         int dealer[10] ={0,0,0,0,0,0,0,0,0,0};
         mytotal=0;
         int mycards[10]={0,0,0,0,0,0,0,0,0,0};
